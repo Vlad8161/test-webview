@@ -1,0 +1,21 @@
+html
+  head
+    title Test WebView
+  body
+    if method
+      div Method: #{method}
+    if headers
+      div Headers: #{headers}
+    if params
+      div Params: #{params}
+    if body
+      div Body: #{body}
+    br
+
+    div
+      a(href='/link') link
+
+    div(style='margin-top: 32px') Post form
+      form(action='/' method='POST')
+        input(type='hidden' name='key' value='value')
+        input(type='submit')
