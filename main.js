@@ -32,8 +32,8 @@ app.get('/link', (req, res) => {
   res.render('index', {message: `POST: ${req.headers} ${req.params} ${req.body}`})
 })
 
-app.listen(80, () => {
-  console.log('Server is running on port 3000')
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server is running on port ${process.env.PORT || 3000}`)
 })
 
 
