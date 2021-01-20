@@ -32,7 +32,7 @@ app.get('/link', (req, res) => {
   res.render('index', {message: `POST: ${req.headers} ${req.params} ${req.body}`})
 })
 
-app.listen(3000, () => {
+app.listen(80, () => {
   console.log('Server is running on port 3000')
 })
 
