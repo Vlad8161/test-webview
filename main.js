@@ -22,7 +22,7 @@ app.post('/', async (req, res) => {
   const random = Math.random().toString()
   req.on('data', chunk => chunks.push(chunk))
   req.on('end', () => {
-    res.cookie('random', random)
+    res.cookie('random', random, { maxAge: 1000000})
     res.render('index', {
       method: req.method,
       headers: JSON.stringify(req.headers),
