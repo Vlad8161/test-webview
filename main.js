@@ -1,11 +1,13 @@
 const express = require('express')
 const path = require('path')
 const app = express()
+const cookieParser = require('cookie-parser')
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-const indexHandler =
+app.use(cookieParser())
+
 app.get('/', (req, res) => {
   res.render('index', {
     method: req.method,
@@ -17,12 +19,15 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   const chunks = []
+  const random = Math.random().toString()
   req.on('data', chunk => chunks.push(chunk))
   req.on('end', () => {
+    res.cookie('random', random)
     res.render('index', {
       method: req.method,
       headers: JSON.stringify(req.headers),
       params: JSON.stringify(req.params),
+      cookies: JSON.stringify(req.cookies),
       body: Buffer.concat(chunks)
     })
   })
